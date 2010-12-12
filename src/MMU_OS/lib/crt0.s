@@ -1,0 +1,16 @@
+@******************************************************************************
+@ File：crt0.s
+@ 功能：通过它转入C程序
+@******************************************************************************       
+
+.text
+.global _start
+_start:				@ int main(int argc, char **argv)
+	ldr	r0, [sp]		@ 参数argc
+	add	r1, sp, #4		@ 参数argv
+@	mov	r2, r0, lsl #2
+@	add	r2, r2, r1		
+@	add	r2, r2, #4		@ 参数envp = &argv + (argc + 1) * 4,argv，envp数组之间有一个NULL
+	bl	main		@ 调用main函数
+halt_loop:
+	b	halt_loop

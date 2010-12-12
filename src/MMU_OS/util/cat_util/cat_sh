@@ -1,0 +1,3 @@
+cp -f winix w
+dd bs=512 conv=notrunc if=leds of=w seek=30 count=1
+arm-linux-objdump -D -b binary -m arm  w > cat2.s
